@@ -467,6 +467,49 @@ a {
     }
 }
 
+/* ---------- Drawer (side panel) ---------- */
+
+.fl-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(420px, 92vw);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-lg);
+    z-index: 1500;
+    transform: translateX(100%);
+    transition: transform var(--transition-med);
+    padding: 28px 24px;
+    overflow-y: auto;
+}
+
+.fl-drawer.is-open {
+    transform: translateX(0);
+}
+
+.fl-drawer-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity var(--transition-fast);
+}
+
+.fl-drawer-close:hover {
+    opacity: 1;
+}
+
+.fl-drawer h2 {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    color: var(--color-primary-dark);
+    margin: 0 0 20px;
+}
+
 /* ---------- Footer ---------- */
 
 .fl-footer {

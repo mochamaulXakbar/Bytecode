@@ -1,7 +1,7 @@
 requireLogin();
 
 function kehome(){
-    window.location.href = ("menutama.html")
+    window.location.href = ("mainmenu.html")
 }
 
 function kegallery(){

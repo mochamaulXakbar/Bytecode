@@ -9,7 +9,7 @@ function hasil() {
     }
 
     sessionStorage.setItem('user', username);
-    window.location.href = ("menutama.html")
+    window.location.href = ("mainmenu.html")
 }
 
 function kelogout(){

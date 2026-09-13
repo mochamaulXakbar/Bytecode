@@ -1,22 +1,17 @@
 requireLogin();
 
 function kehome(){
-    window.location.href = ("menutama.html")
+    window.location.href = ("mainmenu.html")
 }
 
 function kekeranjang(){
-    const mask = document.getElementById('masking')
-    const kera = document.getElementById('keran')
-    mask.style.display=("block")
-    kera.style.transform=("translateY(650px)")
-
+    document.getElementById('masking').classList.add('is-open')
+    document.getElementById('keran').classList.add('is-open')
 }
 
 function kluar(){
-    const mask = document.getElementById('masking')
-    const kera = document.getElementById('keran')
-    mask.style.display=("none")
-    kera.style.transform=("translateY(-650px)")
+    document.getElementById('masking').classList.remove('is-open')
+    document.getElementById('keran').classList.remove('is-open')
 }
 function kegallery(){
     window.location.href = ("gallery.html")
@@ -98,14 +93,11 @@ for (let i = 0; i < wisataList.length; i++) {
 
 }
 let noMatchElement = document.getElementById('searchNotFound');
-const finds = document.getElementById('finds');
 
 if (!any) {
-    finds.style.display = "block";
     noMatchElement.innerText = 'Pencarian Tidak Ditemukan';
 } else {
-    finds.style.display = "none";
-    noMatchElement.innerText = ''; // Setel teks ke kosong jika ada hasil pencarian yang ditemukan
+    noMatchElement.innerText = '';
 }
 }
 // Fungsi Ketika Pencarian Tidak Ditemukan
