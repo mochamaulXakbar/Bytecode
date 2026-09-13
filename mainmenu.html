@@ -11,13 +11,23 @@
 </head>
 <body>
     <header>
-        <img id='img-click' src="css/Asset/florism.jpeg" alt="Florism">
-        <ul>
+        <img id='img-click' onclick="kehome()" src="css/Asset/florism.jpeg" alt="Florism">
+        <ul id="navGuest">
             <li><button onclick="kegallery()">Ticket</button></li>
             <li><button onclick="kegallery()">Gallery</button></li>
             <li><button onclick="kegallery()">Profile</button></li>
             <li><button onclick="login()">Login</button></li>
             <li><button id="registerbaru" onclick="registerhead()">Register</button></li>
+        </ul>
+        <ul id="navUser" style="display:none;">
+            <li><div class="user">
+                <img src="css/Asset/userlogin.png" alt="User">
+                <h7 id="navUsername">Admin</h7>
+            </div></li>
+            <li><button onclick="ketiketNav()">Ticket</button></li>
+            <li><button onclick="kegalleryNav()">Gallery</button></li>
+            <li><button onclick="keprofileNav()">Profile</button></li>
+            <li><button id="logout" onclick="kelogoutNav()">Logout</button></li>
         </ul>
     </header>
     <div id="kontenu" class="konten">

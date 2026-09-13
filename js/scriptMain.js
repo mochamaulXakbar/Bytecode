@@ -1,3 +1,32 @@
+document.addEventListener("DOMContentLoaded", function () {
+    if (isLoggedIn()) {
+        document.getElementById('navGuest').style.display = 'none';
+        document.getElementById('navUser').style.display = 'flex';
+        document.getElementById('navUsername').textContent = sessionStorage.getItem('user');
+    }
+});
+
+function kehome(){
+    window.location.href = ("mainmenu.html")
+}
+
+function ketiketNav(){
+    window.location.href = ("tiket.html")
+}
+
+function kegalleryNav(){
+    window.location.href = ("gallery.html")
+}
+
+function keprofileNav(){
+    window.location.href = ("profile.html")
+}
+
+function kelogoutNav(){
+    sessionStorage.removeItem('user');
+    window.location.href = ("mainmenu.html")
+}
+
 // Fungsi redirect
 function redirectToPageIfLoggedIn(destinationPage) {
     if (isLoggedIn()) {
@@ -65,7 +94,7 @@ function hasil(){
     }
 
     sessionStorage.setItem('user', username);
-    window.location.href = ("menutama.html")
+    window.location.href = ("mainmenu.html")
 }
 
 function register(){

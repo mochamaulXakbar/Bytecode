@@ -4,15 +4,15 @@ Website statis untuk pemesanan tiket wisata alam di sekitar Yogyakarta (Gunung K
 
 ## Struktur
 
-- `mainmenu.html` - halaman awal (landing page) berisi modal login & registrasi
-- `menutama.html` - halaman utama setelah login, daftar destinasi & event
+- `mainmenu.html` - halaman utama satu-satunya (landing sebelum login, otomatis berubah jadi tampilan setelah login kalau sesi aktif)
+- `menutama.html` - hanya redirect ke `mainmenu.html`, dipertahankan supaya link lama tetap jalan
 - `gallery.html` - katalog wisata, bisa dicari dan dipesan
 - `formtiket.html` - form pemesanan tiket untuk satu destinasi
 - `registrasi.html` - halaman konfirmasi pembayaran
 - `tiket.html` - daftar pesanan tiket milik user
 - `profile.html` - profil user
-- `developer.html` - dashboard input data wisata (belum terhubung ke penyimpanan manapun)
-- `Database/florismdb.sql` - skema database contoh (belum dipakai oleh aplikasi ini)
+- `developer.html` - dashboard admin untuk menambah destinasi baru ke Gallery
+- `Database/florismdb.sql` - skema database contoh (belum dipakai oleh aplikasi ini, lihat bagian Keterbatasan)
 
 ## Menjalankan
 
@@ -30,5 +30,6 @@ Karena tidak ada backend, autentikasi dan data pengguna disimpan di `localStorag
 ## Keterbatasan
 
 - Tidak ada backend/server sungguhan — semua data hanya tersimpan di browser masing-masing pengguna dan akan hilang jika localStorage dibersihkan.
-- `Database/florismdb.sql` masih berupa contoh skema dan belum terhubung ke aplikasi.
-- `developer.html` (dashboard admin) belum memiliki fungsi simpan data.
+- `Database/florismdb.sql` masih berupa contoh skema dan belum terhubung ke aplikasi. Kalau mau dipakai beneran, opsi paling nyambung adalah PHP + MySQL lewat XAMPP (lokal) karena dump-nya memang format MySQL/MariaDB, atau pindah ke BaaS seperti Supabase/Firebase kalau mau langsung online tanpa nulis backend sendiri.
+- Password akun tersimpan polos (plain text) di localStorage, bukan di-hash — cukup aman untuk demo lokal tapi jangan dipakai untuk data sungguhan.
+- Layout area konten (banner, grid destinasi) masih lebar tetap (1100-1300px), belum responsif penuh untuk layar HP — baru navbar yang sudah dibikin tidak terpotong di layar sempit.

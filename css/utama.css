@@ -24,6 +24,26 @@ header{
     -moz-box-shadow: 2px 7px 12px -3px rgba(0,0,0,0.53);
 }
 
+.user{
+    height: 30px;
+    width: 110px;
+    margin-top: 3px;
+    align-items:center;
+    display: flex;
+    flex-direction: row;
+    font-family: 'Poppins';
+    font-weight: bold;
+}
+
+.user img{
+    width: 25px;
+    margin-right: 10px;
+}
+
+.user h7{
+    margin-right: 10px;
+}
+
 
 header img{
     object-fit: contain;
