@@ -1,3 +1,5 @@
+requireLogin();
+
 document.addEventListener("DOMContentLoaded", function () {
     // This ensures that the DOM is fully loaded before executing the script
 
@@ -6,17 +8,27 @@ document.addEventListener("DOMContentLoaded", function () {
     const ayam = urlParams.get('ayam')
     const harga = urlParams.get('harga')
 
+    if (!isian || !ayam || !harga) {
+        alert("Data wisata tidak ditemukan. Silakan pilih wisata dari gallery.");
+        window.location.href = "gallery.html";
+        return;
+    }
+
     document.getElementById("namwis").value = isian;
     document.getElementById("fotobg").src = ayam;
     document.getElementById("harga").value = harga * 1;
 });
 function cekharga() {
     const urlParams = new URLSearchParams(window.location.search);
-    const harga = urlParams.get('harga')
-    var jumlah = parseInt(document.getElementById('jumlahTiket').value);
-    var nomor = parseInt(harga);
-    const baru = nomor * jumlah;
-    document.getElementById("harga").value = baru;
+    const hargaSatuan = parseFloat(urlParams.get('harga'));
+    const jumlah = parseInt(document.getElementById('jumlahTiket').value);
+
+    if (isNaN(hargaSatuan) || isNaN(jumlah) || jumlah < 1) {
+        alert("Jumlah tiket tidak valid.");
+        return;
+    }
+
+    document.getElementById("harga").value = hargaSatuan * jumlah;
 }
 
 

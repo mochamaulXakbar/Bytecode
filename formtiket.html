@@ -10,6 +10,7 @@
 <body>
     <div class="konten">
         <div class="colum">
+            <script src="js/auth.js"></script>
             <script src="js/scriptForm.js"></script>
             <h1>Selesaikan Pemesanan Anda</h1>
             <label for="wisata">Wisata :</label>
@@ -45,6 +46,19 @@
         var tanggal = document.getElementById("Tanggal").value;
         var jumlah = document.getElementById("jumlahTiket").value;
         var harga = document.getElementById("harga").value;
+
+        if (!tanggal) {
+            alert("Silakan pilih tanggal kunjungan.");
+            return;
+        }
+        if (!jumlah || parseInt(jumlah) < 1) {
+            alert("Jumlah tiket tidak valid.");
+            return;
+        }
+        if (!harga || isNaN(parseFloat(harga))) {
+            alert("Silakan cek harga terlebih dahulu.");
+            return;
+        }
 
         // Ambil data keranjang dari local storage atau inisialisasi jika belum ada
         var keranjang = JSON.parse(localStorage.getItem('keranjangTiket')) || [];

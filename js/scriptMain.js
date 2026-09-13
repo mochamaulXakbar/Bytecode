@@ -1,8 +1,3 @@
-// Pengecekan Login
-function isLoggedIn() {
-    return sessionStorage.getItem('user') !== null;
-}
-
 // Fungsi redirect
 function redirectToPageIfLoggedIn(destinationPage) {
     if (isLoggedIn()) {
@@ -60,7 +55,38 @@ function registerhead(){
 }
 
 function hasil(){
+    const username = document.getElementById('login-username').value.trim();
+    const password = document.getElementById('login-password').value;
+
+    const user = getUsers().find(u => u.username === username && u.password === password);
+    if (!user) {
+        alert("Username atau password salah.");
+        return;
+    }
+
+    sessionStorage.setItem('user', username);
     window.location.href = ("menutama.html")
+}
+
+function register(){
+    const username = document.getElementById('reg-username').value.trim();
+    const password = document.getElementById('reg-password').value;
+
+    if (!username || !password) {
+        alert("Username dan password wajib diisi.");
+        return;
+    }
+
+    const users = getUsers();
+    if (users.some(u => u.username === username)) {
+        alert("Username sudah terdaftar. Silakan login.");
+        return;
+    }
+
+    users.push({ username, password });
+    saveUsers(users);
+    alert("Registrasi berhasil. Silakan login.");
+    klogin();
 }
 
 // Fungsi navbar

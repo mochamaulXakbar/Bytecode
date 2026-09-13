@@ -1,3 +1,5 @@
+requireLogin();
+
 function kehome(){
     window.location.href = ("menutama.html")
 }
@@ -29,6 +31,7 @@ function ketiket(){
 }
 
 function kelogout(){
+    sessionStorage.removeItem('user');
     window.location.href = ("mainmenu.html")
 }
 

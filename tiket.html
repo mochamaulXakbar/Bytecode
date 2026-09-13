@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Florism/Tiket</title>
     <link rel="stylesheet" type="text/css" href="css/tiketcss.css">
+    <script src="js/auth.js"></script>
     <script src="js/scriptTik.js"></script>
 </head>
 <body>
@@ -15,6 +16,7 @@
             <li><button id="home" onclick="kegallery()">Gallery</button></li>
             <li><button id="home" onclick="keprofile()">Profile</button></li>
             <li><button id="logout" onclick="kelogout()">Logout</button></li>
+        </ul>
     </header>
     <div id="konten" class="konten">
         <h1>Pesanan Anda </h1>
@@ -22,44 +24,39 @@
             <table>
                 <thead>
                     <tr>
-                       
                         <th>Nama</th>
-                       
                         <th>Tanggal</th>
-                        <th>PCS</th>
+                        <th>Jumlah</th>
+                        <th>Harga</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                       
-                        <td>Barang A</td>
-                      
-                        <td>2023-11-19</td>
-                        <td>50</td>
-                    </tr>
-                    <tr>
-                       
-                        <td>Barang B</td>
-                        
-                        <td>2023-11-20</td>
-                        <td>30</td>
-                    </tr>
-                    <tr>
-                       
-                        <td>Barang B</td>
-                        
-                        <td>2023-11-20</td>
-                        <td>30</td>
-                    </tr>
-                    
-                    
-                    
-                    
+                <tbody id="tbodyPesanan">
                 </tbody>
             </table>
-
         </div>
+        <p id="pesananKosong" style="display:none;">Belum ada pesanan tiket.</p>
         <img src="css/Asset/ayam.png">
     </div>
 </body>
+<script>
+    function tampilkanPesanan() {
+        var tbody = document.getElementById("tbodyPesanan");
+        var keranjang = JSON.parse(localStorage.getItem('keranjangTiket')) || [];
+
+        if (keranjang.length === 0) {
+            document.getElementById("pesananKosong").style.display = "block";
+            return;
+        }
+
+        keranjang.forEach(function (tiket) {
+            var row = tbody.insertRow();
+            row.insertCell(0).innerHTML = tiket.namaWisata;
+            row.insertCell(1).innerHTML = tiket.tanggal;
+            row.insertCell(2).innerHTML = tiket.jumlah;
+            row.insertCell(3).innerHTML = tiket.harga;
+        });
+    }
+
+    tampilkanPesanan();
+</script>
 </html>

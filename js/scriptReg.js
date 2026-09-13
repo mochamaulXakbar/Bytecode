@@ -1,3 +1,5 @@
+requireLogin();
+
 document.addEventListener("DOMContentLoaded", function () {
     // This ensures that the DOM is fully loaded before executing the script
 

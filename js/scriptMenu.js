@@ -1,4 +1,6 @@
 
+requireLogin();
+
 //fungsi navbar
 function kehome(){
     window.location.href = ("menutama.html")
@@ -17,6 +19,7 @@ function keprofile() {
 }
 
 function kelogout(){
+    sessionStorage.removeItem('user');
     window.location.href = ("mainmenu.html")
 }
 function keregister(){
