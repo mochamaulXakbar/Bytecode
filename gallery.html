@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <img id='img-click' onclick="kehome()" src="css/Asset/florism.jpeg">
+        <img id='img-click' onclick="kehome()" src="css/Asset/florism.jpeg" alt="Florism">
 
         <div class="searchbar">
             <input type="text" id="searchBarWisata" placeholder="Cari Wisata">
@@ -26,12 +26,12 @@
     </header>
 
     <div class="konten">
-        <img id="finds" src="css/Asset/find.png">
+        <img id="finds" src="css/Asset/find.png" alt="Tidak ditemukan">
         <div class="row1">
         <div class="listgal">
             
             <div onclick="pesan('Obelix Village','css/Asset/obelix.jpg','50000.00')" class="isi">
-            <img  src="css/Asset/obelix.jpg">
+            <img  src="css/Asset/obelix.jpg" alt="Obelix Village">
             <h3>Obelix Village Sleman Yogyakarta</h3>
             <p>&#10026;	 4.8</p>
             <p>Start From 50k</p>
@@ -44,7 +44,7 @@
 
         <div  class="listgal">
             <div onclick="pesan('Hutan Pinus Mangunan','css/Asset/pinus.jpg','5000.00')" class="isi">
-            <img id="pinus" src="css/Asset/pinus.jpg">
+            <img id="pinus" src="css/Asset/pinus.jpg" alt="Hutan Pinus Mangunan">
             <h3 >Hutan Pinus Mangunan</h3>
             <p>&#10026;	 4.6</p>
             <p>Start From 5k</p>
@@ -56,7 +56,7 @@
         </div>
         <div  class="listgal">
             <div onclick="pesan('Heha Forest','css/Asset/hehaforest.jpg','20000.00')" class="isi">
-            <img id="hforest" src="css/Asset/hehaforest.jpg">
+            <img id="hforest" src="css/Asset/hehaforest.jpg" alt="Heha Forest">
             <h3>Heha Forestt Kaliurang</h3>
             <p>&#10026;	 4.2</p>
             <p>Start From 20k</p>
@@ -68,7 +68,7 @@
         </div>
         <div  class="listgal">
             <div onclick="pesan('Bhumi Merapi','css/Asset/bumimerapi.jpg','30000.00')" class="isi">
-            <img id="bhumi" src="css/Asset/bumimerapi.jpg">
+            <img id="bhumi" src="css/Asset/bumimerapi.jpg" alt="Bhumi Merapi">
             <h3>Bhumi Merapi Kaliurang</h3>
             <p>&#10026;	 4.5</p>
             <p>Start From 30k</p>
@@ -80,7 +80,7 @@
         </div>
         <div  class="listgal">
             <div onclick="pesan('Kebun Buah','css/Asset/kebunbuah.jpg','7000.00')" class="isi">
-            <img  src="css/Asset/kebunbuah.jpg">
+            <img  src="css/Asset/kebunbuah.jpg" alt="Kebun Buah Mangunan">
             <h3>Kebun Buah Mangunan</h3>
             <p>&#10026;	 4.7</p>
             <p>Start From 7k</p>
@@ -93,7 +93,7 @@
         <div  class="row2">
             <div class="listgal">
                 <div onclick="pesan('Geoforest Watu','css/Asset/watu.jpg','5000.00')" class="isi">
-                <img id="watup" src="css/Asset/watu.jpg">
+                <img id="watup" src="css/Asset/watu.jpg" alt="Geoforest Watu">
                 <h3>Geoforest Watu Gunung Kidul</h3>
                 <p>&#10026;	 4.5</p>
                 <p>Start From 5k</p>
@@ -104,7 +104,7 @@
             </div>
             <div class="listgal">
                 <div onclick="pesan('Mangrove Baros','css/Asset/mangrove.jpg','10000.00')" class="isi">
-                <img id="mangroveb" src="css/Asset/mangrove.jpg">
+                <img id="mangroveb" src="css/Asset/mangrove.jpg" alt="Mangrove Baros">
                 <h3>Mangrove Baros Bantul</h3>
                 <p>&#10026;	 4.3</p>
                 <p>Start From 10k</p>
@@ -115,7 +115,7 @@
             </div>
             <div class="listgal">
                 <div  onclick="pesan('Danau kalibiru','css/Asset/kalibiru.jpg','10000.00')" class="isi">
-                <img id="dkalibiru"  src="css/Asset/kalibiru.jpg">
+                <img id="dkalibiru"  src="css/Asset/kalibiru.jpg" alt="Danau Kalibiru">
                 <h3>Danau Kalibiru Kulonprogo</h3>
                 <p>&#10026;	 4.4</p>
                 <p>Start From 10k</p>
@@ -126,7 +126,7 @@
             </div>
             <div  class="listgal">
                 <div onclick="pesan('Bukit Pengilon','css/Asset/pengilon.jpg','5000.00')" class="isi">
-                <img id="bpengilon" src="css/Asset/pengilon.jpg">
+                <img id="bpengilon" src="css/Asset/pengilon.jpg" alt="Bukit Pengilon">
                 <h3>Bukit Pengilon Gunung Kidul</h3>
                 <p>&#10026;	 4.7</p>
                 <p>Start From 5k</p>
@@ -137,7 +137,7 @@
             </div>
             <div class="listgal">
                 <div onclick="pesan('Selomapioro Park','css/Asset/selomapioro.jpg','10000.00')" class="isi">
-                <img id="pselomapioro"  src="css/Asset/selomapioro.jpg">
+                <img id="pselomapioro"  src="css/Asset/selomapioro.jpg" alt="Selomapioro Park">
                 <h3>Selomapioro Park Bantul</h3>
                 <p>&#10026;	 4.6</p>
                 <p>Start From 10k</p>
@@ -153,7 +153,7 @@
     </div>
     <div id="keran" class="isikeranjang">
         <h1>Keranjang Tiket Anda</h1>
-        <img onclick="kluar()" src="css/Asset/reject.png">
+        <img onclick="kluar()" src="css/Asset/reject.png" alt="Tutup">
         <div class="keranjang">
             <table border="1">
                 <thead>
