@@ -500,5 +500,12 @@ footer {
 }
 
 @media only screen and (max-width: 1280px) {
-    /* Additional styles for smaller resolutions if necessary */
+    header{
+        overflow: visible;
+        flex-wrap: wrap;
+        height: auto;
+    }
+    header ul{
+        flex-wrap: wrap;
+    }
 }

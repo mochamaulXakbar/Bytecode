@@ -71,9 +71,14 @@ function hasil(){
 function register(){
     const username = document.getElementById('reg-username').value.trim();
     const password = document.getElementById('reg-password').value;
+    const passwordConfirm = document.getElementById('reg-password-confirm').value;
 
     if (!username || !password) {
         alert("Username dan password wajib diisi.");
+        return;
+    }
+    if (password !== passwordConfirm) {
+        alert("Konfirmasi password tidak cocok.");
         return;
     }
 
