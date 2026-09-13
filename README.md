@@ -13,6 +13,7 @@ Website statis untuk pemesanan tiket wisata alam di sekitar Yogyakarta (Gunung K
 - `profile.html` - profil user
 - `developer.html` - dashboard admin untuk menambah destinasi baru ke Gallery
 - `Database/florismdb.sql` - skema database contoh (belum dipakai oleh aplikasi ini, lihat bagian Keterbatasan)
+- `css/theme.css` - design system bersama (warna, tipografi, komponen header/nav/tombol/form/modal/drawer) yang dipakai semua halaman
 
 ## Menjalankan
 
@@ -32,4 +33,4 @@ Karena tidak ada backend, autentikasi dan data pengguna disimpan di `localStorag
 - Tidak ada backend/server sungguhan — semua data hanya tersimpan di browser masing-masing pengguna dan akan hilang jika localStorage dibersihkan.
 - `Database/florismdb.sql` masih berupa contoh skema dan belum terhubung ke aplikasi. Kalau mau dipakai beneran, opsi paling nyambung adalah PHP + MySQL lewat XAMPP (lokal) karena dump-nya memang format MySQL/MariaDB, atau pindah ke BaaS seperti Supabase/Firebase kalau mau langsung online tanpa nulis backend sendiri.
 - Password akun tersimpan polos (plain text) di localStorage, bukan di-hash — cukup aman untuk demo lokal tapi jangan dipakai untuk data sungguhan.
-- Layout area konten (banner, grid destinasi) masih lebar tetap (1100-1300px), belum responsif penuh untuk layar HP — baru navbar yang sudah dibikin tidak terpotong di layar sempit.
+- `login.html` tidak terhubung dari navigasi manapun (alur login yang dipakai adalah modal di `mainmenu.html`); dipertahankan dan tetap didesain ulang untuk konsistensi kalau suatu saat mau dipakai.
