@@ -4,206 +4,192 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Florism/Home</title>
+    <link rel="stylesheet" type="text/css" href="css/theme.css">
     <link rel="stylesheet" type="text/css" href="css/utama.css">
     <script src="js/auth.js"></script>
     <script src="js/scriptMain.js"></script>
-    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="js/reveal.js"></script>
 </head>
 <body>
-    <header>
-        <img id='img-click' onclick="kehome()" src="css/Asset/florism.jpeg" alt="Florism">
-        <ul id="navGuest">
-            <li><button onclick="kegallery()">Ticket</button></li>
-            <li><button onclick="kegallery()">Gallery</button></li>
-            <li><button onclick="kegallery()">Profile</button></li>
-            <li><button onclick="login()">Login</button></li>
-            <li><button id="registerbaru" onclick="registerhead()">Register</button></li>
-        </ul>
-        <ul id="navUser" style="display:none;">
-            <li><div class="user">
-                <img src="css/Asset/userlogin.png" alt="User">
-                <h7 id="navUsername">Admin</h7>
-            </div></li>
-            <li><button onclick="ketiketNav()">Ticket</button></li>
-            <li><button onclick="kegalleryNav()">Gallery</button></li>
-            <li><button onclick="keprofileNav()">Profile</button></li>
-            <li><button id="logout" onclick="kelogoutNav()">Logout</button></li>
-        </ul>
+    <header class="fl-header">
+        <div class="fl-header-inner">
+            <div class="fl-logo" onclick="kehome()">
+                <img src="css/Asset/florism.jpeg" alt="Florism">
+                <span>florism.</span>
+            </div>
+            <ul class="fl-nav" id="navGuest">
+                <li><button onclick="kegallery()">Ticket</button></li>
+                <li><button onclick="kegallery()">Gallery</button></li>
+                <li><button onclick="kegallery()">Profile</button></li>
+                <li><button onclick="login()">Login</button></li>
+                <li><button class="fl-btn-primary" id="registerbaru" onclick="registerhead()">Register</button></li>
+            </ul>
+            <ul class="fl-nav" id="navUser" style="display:none;">
+                <li>
+                    <div class="fl-user-chip">
+                        <img src="css/Asset/userlogin.png" alt="User">
+                        <span id="navUsername">Admin</span>
+                    </div>
+                </li>
+                <li><button onclick="ketiketNav()">Ticket</button></li>
+                <li><button onclick="kegalleryNav()">Gallery</button></li>
+                <li><button onclick="keprofileNav()">Profile</button></li>
+                <li><button class="fl-btn-outline" id="logout" onclick="kelogoutNav()">Logout</button></li>
+            </ul>
+        </div>
     </header>
-    <div id="kontenu" class="konten">
-        <div class="banner">
-            <h4>Mari Jelajahi Wisata Alam Di Wilayah Anda</h4>
-            <div class="bantu">
-                <h5>Sudah Ada Planning ?</h5>
+
+    <main class="fl-page">
+        <section class="hero">
+            <div class="hero-inner fl-container">
+                <h1 class="reveal">Mari Jelajahi Wisata Alam Di Wilayah Anda</h1>
+                <div class="hero-pill reveal">
+                    <span>Sudah Ada Planning?</span>
+                </div>
+                <div class="hero-actions reveal">
+                    <button class="hero-icon" onclick="haljelajah()" title="Jelajahi Destinasi">
+                        <img src="css/Asset/jela.png" alt="Jelajahi">
+                    </button>
+                    <button class="hero-icon" onclick="haleven()" title="Lihat Event">
+                        <img src="css/Asset/even.png" alt="Event">
+                    </button>
+                </div>
             </div>
-            <div class="btnban">
-                <img onclick="haljelajah()" src="css/Asset/jela.png" alt="Jelajahi">
-                <img onclick="haleven()" src="css/Asset/even.png" alt="Event">
+        </section>
+
+        <section class="fl-container section" id="jel-section">
+            <h2 class="section-title reveal">Mulai Jelajahi</h2>
+            <div id="jel" class="card-grid">
+                <div id="gunkid" class="dest-card reveal">
+                    <div class="isi">
+                        <h3>Gunung Kidul</h3>
+                        <button>Jelajahi</button>
+                    </div>
+                </div>
+                <div id="bantul" class="dest-card reveal">
+                    <div class="isi">
+                        <h3>Bantul</h3>
+                        <button>Jelajahi</button>
+                    </div>
+                </div>
+                <div id="kulon" class="dest-card reveal">
+                    <div class="isi">
+                        <h3>Kulon Progo</h3>
+                        <button>Jelajahi</button>
+                    </div>
+                </div>
+                <div id="magel" class="dest-card reveal">
+                    <div class="isi">
+                        <h3>Magelang</h3>
+                        <button>Jelajahi</button>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="jelajah">
-            <h2 id="kamu">Mulai Jelajahi</h2>
-        </div>
-    <div id="jel" class="like">
-    <div id="gunkid" class="read">
-        <div class="isi">
-            <h3>Gunung Kidul</h3>
-            <button>Jelajahi</button>
-        </div>
-    </div>
+        </section>
 
-    <div id="bantul" class="read">
-        <div class="isi">
-            <h3>Bantul</h3>
-            <button>Jelajahi</button>
-        </div>
-    </div>
-
-    <div id="kulon" class="read">
-        <div class="isi">
-            <h3>Kulon Progo</h3>
-            <button>Jelajahi</button>
-        </div>
-    </div>
-
-    <div id="magel" class="read">
-        <div class="isi">
-            <h3>Magelang</h3>
-            <button>Jelajahi</button>
-        </div>
-    </div>
-    </div>
-    <h2 id="kamu">Destinasi Dengan Rating Tertinggi</h2>
-    <div id="pop" class="like">
-        <div id="heh" class="read">
-            <div class="isi">
-                <h3>Heha Forest</h3>
-                <button>Jelajahi</button>
+        <section class="fl-container section">
+            <h2 class="section-title reveal">Destinasi Dengan Rating Tertinggi</h2>
+            <div id="pop" class="card-grid">
+                <div id="heh" class="dest-card reveal">
+                    <div class="isi">
+                        <h3>Heha Forest</h3>
+                        <button>Jelajahi</button>
+                    </div>
+                </div>
+                <div id="bupe" class="dest-card reveal">
+                    <div class="isi">
+                        <h3>Bukit Pengilon</h3>
+                        <button>Jelajahi</button>
+                    </div>
+                </div>
+                <div id="obe" class="dest-card reveal">
+                    <div class="isi">
+                        <h3>Obelix Village</h3>
+                        <button>Jelajahi</button>
+                    </div>
+                </div>
+                <div id="hut" class="dest-card reveal">
+                    <div class="isi">
+                        <h3>Hutan Pinus</h3>
+                        <button>Jelajahi</button>
+                    </div>
+                </div>
             </div>
-        </div>
-    
-        <div id="bupe" class="read">
-            <div class="isi">
-                <h3>Bukit Pengilon</h3>
-                <button>Jelajahi</button>
+        </section>
+
+        <section id="even" class="fl-container section">
+            <h2 class="section-title reveal">Yuk Lihat Event Di Yogyakarta</h2>
+            <div class="events-grid">
+                <div class="events reveal">
+                    <div class="events-overlay">
+                        <h3>Jogja Nature Camp</h3>
+                        <p>Tanggal: 21-22 Oktober 2023<br>Tempat: Karang Pramuka – Yogyakarta</p>
+                        <button class="fl-btn fl-btn-outline" onclick="JogjaNatureCamp()">Baca Selengkapnya</button>
+                    </div>
+                </div>
+                <div id="event2" class="events reveal">
+                    <div class="events-overlay">
+                        <h3>Jogja Tourism Day</h3>
+                        <p>Tanggal: 23-27 September 2023<br>Tempat: Pantai Glagah Yogyakarta</p>
+                        <button class="fl-btn fl-btn-outline" onclick="JogjaToursimDay()">Baca Selengkapnya</button>
+                    </div>
+                </div>
+                <div id="event3" class="events reveal">
+                    <div class="events-overlay">
+                        <h3>Gunung Kidul Tourism Day</h3>
+                        <p>Tanggal: 18-27 September 2023<br>Tempat: Desa Wisata Tepus - Gunung Kidul</p>
+                        <button class="fl-btn fl-btn-outline" onclick="GunungKidul()">Baca Selengkapnya</button>
+                    </div>
+                </div>
             </div>
-        </div>
-    
-        <div id="obe" class="read">
-            <div class="isi">
-                <h3>Obelix Village</h3>
-                <button>Jelajahi</button>
-            </div>
-        </div>
-    
-        <div id="hut" class="read">
-            <div class="isi">
-                <h3>Hutan Pinus</h3>
-                <button>Jelajahi</button>
-            </div>
-        </div>
-        </div>
+        </section>
+    </main>
 
+    <div id="masking" class="fl-overlay"></div>
 
-    <div id="even" class="colum">
-        <h1 id="mari">Yuk liat event di Yogyakarta</h1>
-    <div class="events">
-        <h1>Jogja Nature Camp </h1>
-        <h2>Tanggal: 21-22 Oktober 2023
-            Tempat: Karang Pramuka – Yogyakarta</h2>
-        <button onclick="JogjaNatureCamp()">Baca Selengkapnya</button>
+    <div id="log" class="fl-modal">
+        <img class="fl-modal-close" onclick="exit()" src="css/Asset/reject.png" alt="Tutup">
+        <h2>Selamat Datang Di Florism</h2>
+        <p class="modal-sub">Silakan masuk ke akun kamu</p>
+        <div class="fl-field">
+            <input id="login-username" type="text" placeholder="Username">
+        </div>
+        <div class="fl-field">
+            <input id="login-password" type="password" placeholder="Password">
+        </div>
+        <button id="login" class="fl-btn fl-btn-primary fl-btn-block" onclick="hasil()">Login</button>
+        <p class="modal-alt">Belum Punya Akun? <button id="signup" class="link-btn" onclick="signup()">Sign Up</button></p>
     </div>
-    <div id="event2" class="events">
-        <h1>Jogja Tourism Day</h1>
-        <h2>Tanggal: 23-27 September 2023
-            Tempat: Pantai Glagah Yogyakarta</h2>
-        <button onclick="JogjaToursimDay()">Baca Selengkapnya</button>
-    </div>
-    <div id="event3" class="events">
-        <h1>Gunung Kidul Tourism Day</h1>
-        <h2>Tanggal: 18-27 September 2023
-            Tempat: Desa Wisata Tepus - Gunung Kidul</h2>
-        <button onclick="GunungKidul()">Baca Selengkapnya</button>
-    </div>
-    </div>
-    </div>
-</body>
-<div id="masking" class="mask">
-    </div>
-<div  id="log" class="form">
-    <img onclick="exit()" src="css/Asset/reject.png" alt="Tutup">
-    <h1>welcome To Florism</h1>
-    <h3>Please Sign In</h3>
-    <input id="login-username" type="text" placeholder="Username"><br>
-    <input id="login-password" type="password" placeholder="Password"><br>
-    <input id="login" onclick="hasil()" type="submit" value="Login"><br>
-<h4>Belum Punya Akun?</h4>
-<button id="signup" onclick="signup()">Sign Up</button>
-</div>
 
-<div id="reg" class="form">
-    <img onclick="exitRegister()" src="css/Asset/reject.png" alt="Tutup">
-    <h3>Login/Daftar</h3>
-    <input id="reg-username" type="text" placeholder="Username"><br>
-    <input id="reg-password" type="password" placeholder="Password"><br>
-    <input id="reg-password-confirm" type="password" placeholder="Konfirmasi Password"><br>
-    <input id="register" onclick="register()" type="submit" value="Daftar"><br>
-    <h4>Sudah Punya Akun?</h4>
-    <button id="signin" onclick="klogin()">Login</button>
-</div>
+    <div id="reg" class="fl-modal">
+        <img class="fl-modal-close" onclick="exitRegister()" src="css/Asset/reject.png" alt="Tutup">
+        <h2>Daftar Akun Baru</h2>
+        <div class="fl-field">
+            <input id="reg-username" type="text" placeholder="Username">
+        </div>
+        <div class="fl-field">
+            <input id="reg-password" type="password" placeholder="Password">
+        </div>
+        <div class="fl-field">
+            <input id="reg-password-confirm" type="password" placeholder="Konfirmasi Password">
+        </div>
+        <button id="register" class="fl-btn fl-btn-primary fl-btn-block" onclick="register()">Daftar</button>
+        <p class="modal-alt">Sudah Punya Akun? <button id="signin" class="link-btn" onclick="klogin()">Login</button></p>
+    </div>
 
-<div id="aler" class="alert">
-    <h1>Silakan Login Terlebih Dahulu</h1>
-</div>
-<footer>
-    <div class="footer-content">
-        <div class="footer-left">
+    <div id="aler" class="fl-toast">
+        <p>Silakan Login Terlebih Dahulu</p>
+    </div>
+
+    <footer class="fl-footer">
+        <div class="fl-footer-inner">
             <p>&copy; 2023 Florism. All rights reserved.</p>
-        </div>
-        <div class="footer-right">
             <ul>
                 <li><a href="#">Privacy Policy</a></li>
                 <li><a href="#">Terms of Service</a></li>
                 <li><a href="#">Contact Us</a></li>
             </ul>
         </div>
-    </div>
-</footer>
-<script>
-    const scrollRevealOption = {
-            origin: "top",
-            distance: "100px",
-            duration: 500,
-            delay: 0.5,
-            opacity: 0,
-            scale: 0.8,
-            easing: "cubic-bezier(0.5, 0, 0, 1)",
-            reset: true
-        };
-        ScrollReveal().reveal(".events",scrollRevealOption);
-        
-        const yuk = {
-            origin: "left",
-            distance: "400px",
-            duration: 1000,
-            delay: 0.5,
-            opacity: 0,
-            scale: 0.8,
-            easing: "cubic-bezier(0.5, 0, 0, 1)",
-            reset: true
-        };
-        ScrollReveal().reveal(".colum",yuk);
-    
-        const reveal = {
-            origin: "top",
-            distance: "0px",
-            duration: 500,
-            delay: 0,
-            opacity: 0,
-            scale: 0.9  ,
-            reset: true
-        };
-        ScrollReveal().reveal(".like", reveal);
-
-</script>
+    </footer>
+</body>
 </html>

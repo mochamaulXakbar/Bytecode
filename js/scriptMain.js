@@ -38,49 +38,33 @@ function redirectToPageIfLoggedIn(destinationPage) {
 }
 
 function login(){
-    const masky = document.getElementById('masking')
-    const loginre = document.getElementById('log')
-    masky.style.display=("block")
-    loginre.style.transform=("translateY(600px)")
-    loginre.style.transform=("translateY(600px)")
-
+    document.getElementById('masking').classList.add('is-open')
+    document.getElementById('log').classList.add('is-open')
 }
 
 function exit(){
-    const masky = document.getElementById('masking')
-    const loginre = document.getElementById('log')
-    masky.style.display=("none")
-    loginre.style.transform=("translateY(-600px)")
-
+    document.getElementById('masking').classList.remove('is-open')
+    document.getElementById('log').classList.remove('is-open')
 }
 
 function signup(){
-    const rege = document.getElementById('reg')
-    const loginre = document.getElementById('log')
-    loginre.style.transform=("translateY(-600px)")
-    rege.style.transform=("translateY(600px)")
+    document.getElementById('log').classList.remove('is-open')
+    document.getElementById('reg').classList.add('is-open')
 }
 
 function klogin(){
-    const rege = document.getElementById('reg')
-    const loginre = document.getElementById('log')
-    loginre.style.transform=("translateY(600px)")
-    rege.style.transform=("translateY(-600px)")
+    document.getElementById('log').classList.add('is-open')
+    document.getElementById('reg').classList.remove('is-open')
 }
 
 function exitRegister(){
-    const rege = document.getElementById('reg')
-    const masky = document.getElementById('masking')
-    const loginre = document.getElementById('log')
-    masky.style.display=("none")
-    rege.style.transform=("translateY(-600px)")
-
+    document.getElementById('masking').classList.remove('is-open')
+    document.getElementById('reg').classList.remove('is-open')
 }
+
 function registerhead(){
-    const masky = document.getElementById('masking')
-    const rege = document.getElementById('reg')
-    masky.style.display=("block")
-    rege.style.transform=("translateY(600px)")
+    document.getElementById('masking').classList.add('is-open')
+    document.getElementById('reg').classList.add('is-open')
 }
 
 function hasil(){
@@ -129,17 +113,11 @@ function ketiket() {
 }
 
 function kegallery() {
-   const ler = document.getElementById("aler")
-   ler.style.transform=("translateY(200px)")
-    setTimeout(function() {
-    ler.style.transform = "translateY(-200px)";
-   
-  }, 2000);
-}
-
-function aleroke(){
     const ler = document.getElementById("aler")
-    ler.style.transform=("translateY(-110px)")
+    ler.classList.add('is-open')
+    setTimeout(function() {
+        ler.classList.remove('is-open')
+    }, 2000);
 }
 
 function keprofile() {

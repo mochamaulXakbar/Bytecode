@@ -1,0 +1,549 @@
+/* ===========================================================
+   Florism Design System
+   Shared design tokens + base resets + reusable components
+   used across every page. Page-specific CSS files layer their
+   own layout rules on top of this.
+=========================================================== */
+
+@font-face {
+    font-family: "Poppins";
+    font-weight: 300;
+    src: url("Fonts/Poppins-Light.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Poppins";
+    font-weight: 400;
+    src: url("Fonts/Poppins-Regular.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Poppins";
+    font-weight: 500;
+    src: url("Fonts/Poppins-Medium.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Poppins";
+    font-weight: 600;
+    src: url("Fonts/Poppins-SemiBold.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Poppins";
+    font-weight: 700;
+    src: url("Fonts/Poppins-Bold.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Syne";
+    font-weight: 500;
+    src: url("Fonts/static/Syne-Medium.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Syne";
+    font-weight: 600;
+    src: url("Fonts/static/Syne-SemiBold.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Syne";
+    font-weight: 700;
+    src: url("Fonts/static/Syne-Bold.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Syne";
+    font-weight: 800;
+    src: url("Fonts/static/Syne-ExtraBold.ttf") format("truetype");
+}
+
+:root {
+    --color-primary: #1f7a5c;
+    --color-primary-dark: #14523e;
+    --color-primary-light: #e7f3ee;
+    --color-accent: #f2994a;
+    --color-accent-dark: #d97e2e;
+    --color-bg: #faf9f5;
+    --color-surface: #ffffff;
+    --color-text: #1c2422;
+    --color-text-muted: #66716c;
+    --color-border: #e7e4dc;
+    --color-danger: #d9534f;
+
+    --font-heading: "Syne", "Poppins", sans-serif;
+    --font-body: "Poppins", sans-serif;
+
+    --radius-sm: 10px;
+    --radius-md: 18px;
+    --radius-lg: 28px;
+    --radius-pill: 999px;
+
+    --shadow-sm: 0 2px 10px rgba(20, 30, 25, 0.06);
+    --shadow-md: 0 10px 30px rgba(20, 30, 25, 0.10);
+    --shadow-lg: 0 20px 50px rgba(20, 30, 25, 0.16);
+
+    --container-max: 1180px;
+    --header-height: 76px;
+
+    --transition-fast: 0.18s ease;
+    --transition-med: 0.3s ease;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+button {
+    font-family: var(--font-body);
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+}
+
+/* ---------- Layout helpers ---------- */
+
+.fl-container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.fl-page {
+    padding-top: var(--header-height);
+    min-height: 100vh;
+}
+
+/* ---------- Header / navbar ---------- */
+
+.fl-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+}
+
+.fl-header-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.fl-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--color-primary-dark);
+}
+
+.fl-logo img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.fl-nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+.fl-nav li {
+    list-style: none;
+}
+
+.fl-nav button,
+.fl-nav a {
+    border: none;
+    background: transparent;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--color-text);
+    padding: 10px 14px;
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.fl-nav button:hover,
+.fl-nav a:hover {
+    background: var(--color-primary-light);
+    color: var(--color-primary-dark);
+}
+
+.fl-nav .fl-btn-primary,
+.fl-nav .fl-btn-primary:hover {
+    background: var(--color-primary);
+    color: #fff;
+}
+
+.fl-nav .fl-btn-primary:hover {
+    background: var(--color-primary-dark);
+}
+
+.fl-user-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px 6px 6px;
+    border-radius: var(--radius-pill);
+    background: var(--color-primary-light);
+    font-weight: 600;
+    color: var(--color-primary-dark);
+    font-size: 14px;
+}
+
+.fl-user-chip img {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* ---------- Buttons ---------- */
+
+.fl-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: 12px 26px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+}
+
+.fl-btn-primary {
+    background: var(--color-primary);
+    color: #fff;
+    box-shadow: var(--shadow-sm);
+}
+
+.fl-btn-primary:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.fl-btn-outline {
+    background: transparent;
+    color: var(--color-primary-dark);
+    border: 1.5px solid var(--color-primary);
+}
+
+.fl-btn-outline:hover {
+    background: var(--color-primary-light);
+}
+
+.fl-btn-accent {
+    background: var(--color-accent);
+    color: #fff;
+}
+
+.fl-btn-accent:hover {
+    background: var(--color-accent-dark);
+}
+
+.fl-btn-block {
+    display: flex;
+    width: 100%;
+}
+
+.link-btn {
+    border: none;
+    background: none;
+    color: var(--color-primary);
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0;
+    font-family: var(--font-body);
+    font-size: inherit;
+}
+
+.link-btn:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Cards ---------- */
+
+.fl-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-med), box-shadow var(--transition-med);
+}
+
+.fl-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ---------- Forms ---------- */
+
+.fl-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: left;
+    margin-bottom: 16px;
+}
+
+.fl-field label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+}
+
+.fl-field input,
+.fl-field textarea,
+.fl-field select {
+    font-family: var(--font-body);
+    font-size: 15px;
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--color-border);
+    background: var(--color-bg);
+    color: var(--color-text);
+    transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.fl-field input:focus,
+.fl-field textarea:focus,
+.fl-field select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    background: #fff;
+}
+
+/* ---------- Overlay / modal ---------- */
+
+.fl-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 25, 20, 0.55);
+    backdrop-filter: blur(2px);
+    z-index: 1400;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-med);
+}
+
+.fl-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.fl-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -46%);
+    width: min(92vw, 400px);
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 32px 28px;
+    text-align: center;
+    z-index: 1500;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-med), transform var(--transition-med);
+}
+
+.fl-modal.is-open {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    pointer-events: auto;
+}
+
+.fl-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity var(--transition-fast);
+}
+
+.fl-modal-close:hover {
+    opacity: 1;
+}
+
+.fl-modal h2 {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    margin: 0 0 4px;
+    color: var(--color-primary-dark);
+}
+
+.modal-sub {
+    color: var(--color-text-muted);
+    margin: 0 0 20px;
+    font-size: 14px;
+}
+
+.fl-modal .fl-field {
+    margin-bottom: 14px;
+}
+
+.modal-alt {
+    margin: 16px 0 0;
+    font-size: 14px;
+    color: var(--color-text-muted);
+}
+
+/* ---------- Toast ---------- */
+
+.fl-toast {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    width: 440px;
+    max-width: 90vw;
+    margin-left: -220px;
+    background: var(--color-primary-dark);
+    color: #fff;
+    padding: 16px 24px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    z-index: 1600;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(-140px);
+    pointer-events: none;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.fl-toast.is-open {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fl-toast p {
+    margin: 0;
+    font-weight: 600;
+}
+
+@media (max-width: 500px) {
+    .fl-toast {
+        width: 92vw;
+        margin-left: -46vw;
+    }
+}
+
+/* ---------- Footer ---------- */
+
+.fl-footer {
+    background: var(--color-primary-dark);
+    color: rgba(255,255,255,0.85);
+    padding: 32px 20px;
+    margin-top: 60px;
+}
+
+.fl-footer-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.fl-footer a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.85);
+    margin-left: 18px;
+    transition: color var(--transition-fast);
+}
+
+.fl-footer a:hover {
+    color: #fff;
+}
+
+.fl-footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.fl-footer ul li:first-child a {
+    margin-left: 0;
+}
+
+/* ---------- Scroll reveal ---------- */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---------- Responsive helpers ---------- */
+
+@media (max-width: 900px) {
+    :root {
+        --header-height: 64px;
+    }
+    .fl-header-inner {
+        padding: 10px 16px;
+    }
+}
+
+@media (max-width: 640px) {
+    .fl-nav {
+        justify-content: center;
+    }
+    .fl-footer-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+    .fl-footer ul {
+        justify-content: center;
+    }
+    .fl-footer a {
+        margin: 0 9px;
+    }
+}
