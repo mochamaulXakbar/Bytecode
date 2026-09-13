@@ -4,31 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Florism/PemesananTiket</title>
+    <link rel="stylesheet" type="text/css" href="css/theme.css">
     <link rel="stylesheet" type="text/css" href="css/formtiket.css">
-   
+    <script src="js/auth.js"></script>
+    <script src="js/scriptForm.js"></script>
 </head>
 <body>
-    <div class="konten">
-        <div class="colum">
-            <script src="js/auth.js"></script>
-            <script src="js/scriptForm.js"></script>
-            <h1>Selesaikan Pemesanan Anda</h1>
-            <label for="wisata">Wisata :</label>
-            <input id="namwis" type="text" name="namwis" readonly>
-            <label for="Tanggal">Tanggal :</label>
-            <input id="Tanggal" type="date">
-            <label for="jumlahTiket">Jumlah Tiket:</label>
-            <input type="number" id="jumlahTiket" name="jumlahTiket" value="1" required><br>
-            <label id="labelharga" for="harga">Harga : </label>
-            <input id="harga" type="text" name="harga" readonly>
-            <button id="charga" onclick="cekharga()">Cek Harga</button>
-            <button type="button" onclick="tambahTiket()">Tambah Ke Keranjang</button>
+    <header class="fl-header">
+        <div class="fl-header-inner">
+            <div class="fl-logo" onclick="window.location.href='gallery.html'">
+                <img src="css/Asset/florism.jpeg" alt="Florism">
+                <span>florism.</span>
+            </div>
         </div>
-        <img id="fotobg" alt="Foto Wisata">
-    </div>
-    <div id="notifp" class="notif">
-        <h1>Berhasil Ditambahkan</h1>
-        <button onclick="kembali()">Kembali</button>
+    </header>
+
+    <main class="fl-page">
+        <section class="fl-container section">
+            <div class="booking-card">
+                <div class="booking-form">
+                    <h1>Selesaikan Pemesanan Anda</h1>
+
+                    <div class="fl-field">
+                        <label for="namwis">Wisata</label>
+                        <input id="namwis" type="text" name="namwis" readonly>
+                    </div>
+                    <div class="fl-field">
+                        <label for="Tanggal">Tanggal</label>
+                        <input id="Tanggal" type="date">
+                    </div>
+                    <div class="fl-field">
+                        <label for="jumlahTiket">Jumlah Tiket</label>
+                        <input type="number" id="jumlahTiket" name="jumlahTiket" value="1" min="1" required>
+                    </div>
+                    <div class="fl-field">
+                        <label for="harga">Harga</label>
+                        <input id="harga" type="text" name="harga" readonly>
+                    </div>
+
+                    <div class="booking-actions">
+                        <button class="fl-btn fl-btn-outline" id="charga" onclick="cekharga()">Cek Harga</button>
+                        <button class="fl-btn fl-btn-primary" type="button" onclick="tambahTiket()">Tambah Ke Keranjang</button>
+                    </div>
+                </div>
+                <div class="booking-media">
+                    <img id="fotobg" alt="Foto Wisata">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="masking" class="fl-overlay"></div>
+    <div id="notifp" class="fl-confirm">
+        <h2>Berhasil Ditambahkan</h2>
+        <button class="fl-btn fl-btn-primary fl-btn-block" onclick="kembali()">Kembali</button>
     </div>
 </body>
 <script>
@@ -37,8 +66,8 @@
     }
     function simpanKeLocalStorage(data) {
         localStorage.setItem('keranjangTiket', JSON.stringify(data));
-        const notf = document.getElementById('notifp')
-        notf.style.transform=("translateY(130px)")
+        document.getElementById('masking').classList.add('is-open');
+        document.getElementById('notifp').classList.add('is-open');
     }
 
     function tambahTiket() {
@@ -60,10 +89,8 @@
             return;
         }
 
-        // Ambil data keranjang dari local storage atau inisialisasi jika belum ada
         var keranjang = JSON.parse(localStorage.getItem('keranjangTiket')) || [];
 
-        // Tambah tiket ke keranjang
         keranjang.push({
             namaWisata: namaWisata,
             tanggal: tanggal,
@@ -71,9 +98,7 @@
             harga: harga
         });
 
-        // Simpan kembali ke local storage
         simpanKeLocalStorage(keranjang);
-
     }
 </script>
 </html>

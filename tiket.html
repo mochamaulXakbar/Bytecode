@@ -4,39 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Florism/Tiket</title>
+    <link rel="stylesheet" type="text/css" href="css/theme.css">
     <link rel="stylesheet" type="text/css" href="css/tiketcss.css">
     <script src="js/auth.js"></script>
     <script src="js/scriptTik.js"></script>
+    <script src="js/reveal.js"></script>
 </head>
 <body>
-    <header>
-        <img src="css/Asset/florism.jpeg" alt="Florism">
-        <ul>
-            <li><button onclick="ketiket()">Ticket</button></li>
-            <li><button onclick="kegallery()">Gallery</button></li>
-            <li><button onclick="keprofile()">Profile</button></li>
-            <li><button id="logout" onclick="kelogout()">Logout</button></li>
-        </ul>
-    </header>
-    <div id="konten" class="konten">
-        <h1>Pesanan Anda </h1>
-        <div class="keranjang">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nama</th>
-                        <th>Tanggal</th>
-                        <th>Jumlah</th>
-                        <th>Harga</th>
-                    </tr>
-                </thead>
-                <tbody id="tbodyPesanan">
-                </tbody>
-            </table>
+    <header class="fl-header">
+        <div class="fl-header-inner">
+            <div class="fl-logo" onclick="kehome()">
+                <img src="css/Asset/florism.jpeg" alt="Florism">
+                <span>florism.</span>
+            </div>
+            <ul class="fl-nav">
+                <li><button onclick="ketiket()">Ticket</button></li>
+                <li><button onclick="kegallery()">Gallery</button></li>
+                <li><button onclick="keprofile()">Profile</button></li>
+                <li><button class="fl-btn-outline" id="logout" onclick="kelogout()">Logout</button></li>
+            </ul>
         </div>
-        <p id="pesananKosong" style="display:none;">Belum ada pesanan tiket.</p>
-        <img src="css/Asset/ayam.png" alt="Ilustrasi tiket">
-    </div>
+    </header>
+
+    <main class="fl-page">
+        <section class="fl-container section">
+            <h1 class="section-title reveal">Pesanan Anda</h1>
+
+            <div class="order-card reveal">
+                <div class="order-table-wrap">
+                    <table class="order-table">
+                        <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Tanggal</th>
+                                <th>Jumlah</th>
+                                <th>Harga</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodyPesanan"></tbody>
+                    </table>
+                </div>
+                <div id="pesananKosong" class="empty-state" style="display:none;">
+                    <img src="css/Asset/ayam.png" alt="Belum ada pesanan">
+                    <p>Belum ada pesanan tiket.</p>
+                    <button class="fl-btn fl-btn-primary" onclick="kegallery()">Jelajahi Wisata</button>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
 <script>
     function tampilkanPesanan() {
@@ -44,7 +59,8 @@
         var keranjang = JSON.parse(localStorage.getItem('keranjangTiket')) || [];
 
         if (keranjang.length === 0) {
-            document.getElementById("pesananKosong").style.display = "block";
+            document.querySelector('.order-table-wrap').style.display = "none";
+            document.getElementById("pesananKosong").style.display = "flex";
             return;
         }
 

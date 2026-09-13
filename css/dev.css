@@ -1,116 +1,89 @@
-@font-face {
-    font-family: "Poppins";
-    font-weight: 400;
-    src: url("Fonts/Poppins-ExtraLight.ttf") format(truetype);
-  }
-  @font-face {
-    font-family: "syne";
-    font-weight: 400;
-    src: url("Fonts/static/Syne-Bold.ttf") format(truetype);
-  }
-  @font-face {
-    font-family: "ayam";
-    font-weight: 400;
-    src: url("Fonts/static/Syne-SemiBold.ttf") format(truetype);
-  }
+/* Florism - Dashboard Admin (developer.html) */
 
-body{
-    background-color: #EFFBFF;
+body {
+    background-color: var(--color-bg);
+}
+
+.dev-card {
     display: flex;
+    gap: 24px;
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 28px;
+    margin-bottom: 24px;
+}
+
+.dev-form {
+    flex: 1;
+    min-width: 240px;
+}
+
+.dev-form h3 {
+    font-family: var(--font-heading);
+    color: var(--color-primary-dark);
+    margin: 0 0 18px;
+}
+
+.dev-preview {
+    flex: 1;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    gap: 12px;
 }
 
-.row{
+.dev-preview img {
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.dev-preview-label {
+    font-weight: 700;
+    color: var(--color-text-muted);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.dev-list h3 {
+    font-family: var(--font-heading);
+    color: var(--color-primary-dark);
+    margin: 0 0 16px;
+}
+
+.dev-list .dev-form {
+    display: none;
+}
+
+#listData > div {
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    background: var(--color-bg);
+    margin-bottom: 8px;
 }
 
-.data h4{
-    font-family: 'Poppins';
-    font-weight: bold;
-    font-size: 20px;
-    margin-bottom: -1px;
-}
-
-.row{
-    background-color: white;
-    width: 620px;
-    padding: 10px;
-    border-radius: 15px;
-    box-shadow: 2px 7px 12px -3px rgba(0,0,0,0.53);
-    -webkit-box-shadow: 2px 7px 12px -3px rgba(0,0,0,0.53);
-    -moz-box-shadow: 2px 7px 12px -3px rgba(0,0,0,0.53);
-    
-
-}
-
-.photo{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-}
-
-
-#preview{
-    color: white;
-    background-color:#1069BB;
-    margin-top: -20px;
-    border-radius: 10px;
-    font-family: 'ayam';
-    border: 2px solid white;
-}
-
-
-.photo button{
-    font-family: 'syne';
-    background-color:#1069BB;
+#listData button {
     border: none;
-    color: white;
-    padding: 8px;
-    border-radius: 10px;
-   margin-top: 145px;
+    background: var(--color-danger);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: var(--radius-pill);
 }
 
-.photo img{
-    width: 300px;
-    border-radius: 15px;
-}
-
-.data input{
-    margin-top: 5px;
-    width: 200px;
-    border-radius: 8px;
-    height: 18px;
-    border: 1px solid black;
-    margin-bottom: -10px;
-}
-
-.data{
-    display: flex;
-    flex-direction: column;
-    width: 250px;
-    padding-right: 10px;
-    padding-bottom: 20px;
-    margin-left: 20px;
-    background-color: white;
-    border-radius: 15px;
-}
-
-.isian{
-    margin-left: 20px;
-}
-
-.isian h1{
-    color: #1069BB;
-    font-family: 'syne';
-    font-size: 50px;
-    margin-left: 50px;
-}
-
-.isian h3{
-    margin-top: -5px;
-    margin-bottom: -15px;
-    font-family: 'Poppins';
-    columns: gray;
-    font-size: 30px;
+@media (max-width: 700px) {
+    .dev-card {
+        flex-direction: column;
+    }
 }

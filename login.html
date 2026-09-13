@@ -4,50 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Florism/Login</title>
+    <link rel="stylesheet" type="text/css" href="css/theme.css">
     <link rel="stylesheet" type="text/css" href="css/gaya.css">
     <script src="js/auth.js"></script>
     <script src="js/scriptLog.js"></script>
-    <script src="https://unpkg.com/scrollreveal"></script>
-
 </head>
 <body>
-    <div class="isian">
-        <h1> Welcome To Florism</h1>
-        
-    </div>
-    <div class="form">
-        <img src="css/Asset/florism.jpeg" alt="Florism">
-        <h1>welcome To Florism</h1>
-        <h3>Please Sign In</h3>
-        <input id="login-username" type="text" placeholder="Username"><br>
-        <input id="login-password" type="password" placeholder="Password"><br>
-        <input id="login" onclick="hasil()" type="submit" value="Login"><br>
-    <h4>Belum Punya Akun?</h4>
-    <button id="signup" onclick="signup()">Sign Up</button>
-    </div>
-    
+    <main class="fl-page login-page">
+        <div class="login-card">
+            <img src="css/Asset/florism.jpeg" alt="Florism">
+            <h1>Welcome To Florism</h1>
+            <p class="login-sub">Please sign in to continue</p>
+            <div class="fl-field">
+                <input id="login-username" type="text" placeholder="Username">
+            </div>
+            <div class="fl-field">
+                <input id="login-password" type="password" placeholder="Password">
+            </div>
+            <button id="login" class="fl-btn fl-btn-primary fl-btn-block" onclick="hasil()">Login</button>
+            <p class="login-alt">Belum Punya Akun? <button id="signup" class="link-btn" onclick="signup()">Sign Up</button></p>
+        </div>
+    </main>
 </body>
-<script>
-   const scrollRevealOption = {
-            origin: "right",
-            distance: "500px",
-            duration: 500,
-            delay: 0,
-            opacity: 0,
-            scale: 0.8,
-            easing: "cubic-bezier(0.5, 0, 0, 1)",
-        };
-        ScrollReveal().reveal(".form", scrollRevealOption);
-
-        const reveal = {
-            origin: "left",
-            distance: "1500px",
-            duration: 800,
-            delay: 0,
-            opacity: 0,
-            scale: 0.8,
-            easing: "cubic-bezier(0.5, 0, 0, 1)",
-        };
-        ScrollReveal().reveal(".top", reveal);
-</script>
 </html>

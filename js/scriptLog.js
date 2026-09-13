@@ -16,5 +16,5 @@ function kelogout(){
     window.location.href = ("mainmenu.html")
 }
 function signup(){
-    window.location.href = ("registrasi.html")
+    window.location.href = ("mainmenu.html")
 }

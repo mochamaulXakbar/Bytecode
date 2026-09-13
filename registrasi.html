@@ -4,39 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Florism/Registrasi</title>
+    <link rel="stylesheet" type="text/css" href="css/theme.css">
     <link rel="stylesheet" type="text/css" href="css/regcss.css">
     <script src="js/auth.js"></script>
     <script src="js/scriptReg.js"></script>
 </head>
 <body>
-    <div class="form">
-        <h3>ayam</h3>
-       <h1>Lanjutkan Pembayaran</h1>
-       <div class="formsatu">
-       <div class="form1">
-       <h2>Nama :</h2>
-       <input id="nama" type="text" placeholder="Nama"><br>
-       <h2>Email :</h2>
-       <input id="email" type="text" placeholder="Email"><br>
-       </div>
-       <div class="form2">
-        <h2>No Handphone :</h2>
-        <input id="nohp" type="text" placeholder="No Handphone"><br>
-        <h2>Total Harga :</h2>
-        <label for="totalhg"></label>
-        <input type="text" id="totalhg" name="jenisKelamin" readonly> <br>
-        <input id="signin" onclick="pembayaran()" type="submit" value="Bayar">   
-       <button  onclick="pesanan()">Kembali</button>
+    <header class="fl-header">
+        <div class="fl-header-inner">
+            <div class="fl-logo" onclick="window.location.href='gallery.html'">
+                <img src="css/Asset/florism.jpeg" alt="Florism">
+                <span>florism.</span>
+            </div>
         </div>
-        <div class="baner">
-       <h1>Jelajahi Wisata Alam Di Sekitarmu Bersama Florism</h1>
+    </header>
 
-        </div>
-       </div>
-    </div>
-    <div id="notifp" class="notif">
-        <h1>Berhasil Dipesan</h1>
-        <button onclick="kembali()">Lihat Pesanan</button>
+    <main class="fl-page">
+        <section class="fl-container section">
+            <div class="pay-card">
+                <div class="pay-form">
+                    <h1>Lanjutkan Pembayaran</h1>
+
+                    <div class="fl-field">
+                        <label for="nama">Nama</label>
+                        <input id="nama" type="text" placeholder="Nama lengkap">
+                    </div>
+                    <div class="fl-field">
+                        <label for="email">Email</label>
+                        <input id="email" type="text" placeholder="nama@email.com">
+                    </div>
+                    <div class="fl-field">
+                        <label for="nohp">No Handphone</label>
+                        <input id="nohp" type="text" placeholder="08xxxxxxxxxx">
+                    </div>
+                    <div class="fl-field">
+                        <label for="totalhg">Total Harga</label>
+                        <input type="text" id="totalhg" readonly>
+                    </div>
+
+                    <div class="pay-actions">
+                        <button id="signin" class="fl-btn fl-btn-primary" onclick="pembayaran()">Bayar</button>
+                        <button class="fl-btn fl-btn-outline" onclick="pesanan()">Kembali</button>
+                    </div>
+                </div>
+                <div class="pay-banner">
+                    <h2>Jelajahi Wisata Alam Di Sekitarmu Bersama Florism</h2>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="masking" class="fl-overlay"></div>
+    <div id="notifp" class="fl-confirm">
+        <h2>Berhasil Dipesan</h2>
+        <button class="fl-btn fl-btn-primary fl-btn-block" onclick="kembali()">Lihat Pesanan</button>
     </div>
 </body>
 <script>
@@ -60,8 +81,8 @@ function pembayaran(){
 
     localStorage.removeItem('keranjangTiket');
 
-    const notf = document.getElementById('notifp')
-    notf.style.transform=("translateY(130px)")
+    document.getElementById('masking').classList.add('is-open');
+    document.getElementById('notifp').classList.add('is-open');
 }
 
 function kembali(){

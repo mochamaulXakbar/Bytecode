@@ -3,39 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Florism/Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="css/theme.css">
     <link rel="stylesheet" type="text/css" href="css/dev.css">
     <script src="js/auth.js"></script>
-    <title>Florism/Dashboard</title>
 </head>
 <body>
-    <div class="isian">
-    <h1>Florism Dashboard</h1>
-    <div class="row">
-    <div class="data">
-    <h3>Data Gallery</h3>
-    <h4>Foto Wisata (URL) :</h4>
-    <input id="devFoto" type="text" oninput="updatePreview()">
-    <h4>Nama Wisata :</h4>
-    <input id="devNama" type="text">
-    <h4>Rating :</h4>
-    <input id="devRating" type="text">
-    <h4>Harga :</h4>
-    <input id="devHarga" type="text">
-    <h4>Link Lokasi :</h4>
-    <input id="devLokasi" type="text">
-    </div>
-    <div class="photo">
-    <img id="devPreviewImg" src="css/Asset/kulon.jpg" alt="Preview">
-    <h3 id="preview">Preview</h3>
-    <button onclick="tambahData()">Tambah Data</button>
-    </div>
-    </div>
+    <header class="fl-header">
+        <div class="fl-header-inner">
+            <div class="fl-logo" onclick="window.location.href='mainmenu.html'">
+                <img src="css/Asset/florism.jpeg" alt="Florism">
+                <span>florism.</span>
+            </div>
+        </div>
+    </header>
 
-    <div class="row" id="daftarData" style="margin-top:20px; flex-direction: column; display:none;">
-        <h3>Data Yang Sudah Ditambahkan</h3>
-        <div id="listData"></div>
-    </div>
-</div>
-<script src="js/scriptDev.js"></script>
+    <main class="fl-page">
+        <section class="fl-container section">
+            <h1 class="section-title">Florism Dashboard</h1>
+
+            <div class="dev-card">
+                <div class="dev-form">
+                    <h3>Data Gallery</h3>
+
+                    <div class="fl-field">
+                        <label for="devFoto">Foto Wisata (URL)</label>
+                        <input id="devFoto" type="text" oninput="updatePreview()" placeholder="css/Asset/nama-foto.jpg">
+                    </div>
+                    <div class="fl-field">
+                        <label for="devNama">Nama Wisata</label>
+                        <input id="devNama" type="text" placeholder="Nama destinasi">
+                    </div>
+                    <div class="fl-field">
+                        <label for="devRating">Rating</label>
+                        <input id="devRating" type="text" placeholder="4.5">
+                    </div>
+                    <div class="fl-field">
+                        <label for="devHarga">Harga</label>
+                        <input id="devHarga" type="text" placeholder="50000">
+                    </div>
+                    <div class="fl-field">
+                        <label for="devLokasi">Link Lokasi</label>
+                        <input id="devLokasi" type="text" placeholder="https://maps.google.com/...">
+                    </div>
+
+                    <button class="fl-btn fl-btn-primary fl-btn-block" onclick="tambahData()">Tambah Data</button>
+                </div>
+
+                <div class="dev-preview">
+                    <img id="devPreviewImg" src="css/Asset/kulon.jpg" alt="Preview">
+                    <span class="dev-preview-label">Preview</span>
+                </div>
+            </div>
+
+            <div class="dev-card dev-list" id="daftarData" style="display:none;">
+                <h3>Data Yang Sudah Ditambahkan</h3>
+                <div id="listData"></div>
+            </div>
+        </section>
+    </main>
 </body>
+<script src="js/scriptDev.js"></script>
 </html>
