@@ -19,3 +19,22 @@ function requireLogin() {
         window.location.href = "mainmenu.html";
     }
 }
+
+// Tutup modal/drawer/toast konfirmasi manapun yang sedang terbuka,
+// baik lewat klik di area gelap (overlay) maupun tombol Esc.
+function closeAllOverlays() {
+    document.querySelectorAll('.fl-overlay.is-open, .fl-modal.is-open, .fl-drawer.is-open, .fl-confirm.is-open')
+        .forEach(function (el) { el.classList.remove('is-open'); });
+}
+
+document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('fl-overlay')) {
+        closeAllOverlays();
+    }
+});
+
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+        closeAllOverlays();
+    }
+});
