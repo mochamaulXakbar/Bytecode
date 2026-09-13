@@ -15,13 +15,13 @@
        <div class="formsatu">
        <div class="form1">
        <h2>Nama :</h2>
-       <input type="text" placeholder="Nama"><br>
+       <input id="nama" type="text" placeholder="Nama"><br>
        <h2>Email :</h2>
-       <input type="text" placeholder="Email"><br>
+       <input id="email" type="text" placeholder="Email"><br>
        </div>
        <div class="form2">
         <h2>No Handphone :</h2>
-        <input type="text" placeholder="No Handphone"><br>
+        <input id="nohp" type="text" placeholder="No Handphone"><br>
         <h2>Total Harga :</h2>
         <label for="totalhg"></label>
         <input type="text" id="totalhg" name="jenisKelamin" readonly> <br>
@@ -41,7 +41,26 @@
 </body>
 <script>
 function pembayaran(){
-const notf = document.getElementById('notifp')
+    const nama = document.getElementById('nama').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const nohp = document.getElementById('nohp').value.trim();
+
+    if (!nama) {
+        alert("Nama wajib diisi.");
+        return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert("Email tidak valid.");
+        return;
+    }
+    if (!/^[0-9]{8,15}$/.test(nohp)) {
+        alert("No Handphone harus berupa angka (8-15 digit).");
+        return;
+    }
+
+    localStorage.removeItem('keranjangTiket');
+
+    const notf = document.getElementById('notifp')
     notf.style.transform=("translateY(130px)")
 }
 
