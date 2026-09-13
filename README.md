@@ -1,45 +1,31 @@
-# Bytecode - Florism
+# Florism
 
-Website pemesanan tiket wisata alam di sekitar Yogyakarta (Gunung Kidul, Bantul, Kulon Progo, Magelang, dll). Frontend HTML/CSS/JS murni, backend & database pakai [Supabase](https://supabase.com) (PostgreSQL + Auth online sungguhan).
+Florism adalah platform pemesanan tiket wisata alam untuk membantu wisatawan menemukan dan memesan tiket destinasi wisata di sekitar Yogyakarta — mulai dari Gunung Kidul, Bantul, Kulon Progo, hingga Magelang — dalam satu tempat, tanpa perlu mendatangi lokasi langsung untuk mengecek harga atau ketersediaan.
 
-## Struktur
+## Fitur Utama
 
-- `index.html` - redirect ke `mainmenu.html` (dipakai GitHub Pages/hosting statis sebagai entry point)
-- `mainmenu.html` - halaman utama satu-satunya (landing sebelum login, otomatis berubah jadi tampilan setelah login kalau sesi aktif)
-- `menutama.html` - hanya redirect ke `mainmenu.html`, dipertahankan supaya link lama tetap jalan
-- `gallery.html` - katalog wisata (data dari tabel `destinations`), bisa dicari dan dipesan
-- `formtiket.html` - form pemesanan tiket untuk satu destinasi
-- `registrasi.html` - halaman konfirmasi pembayaran
-- `tiket.html` - daftar pesanan tiket milik user
-- `profile.html` - profil user
-- `developer.html` - dashboard admin untuk menambah destinasi baru ke Gallery
-- `Database/florismdb.sql` - skema database contoh lama (tidak dipakai lagi, sudah digantikan skema Supabase)
-- `css/theme.css` - design system bersama (warna, tipografi, komponen header/nav/tombol/form/modal/drawer) yang dipakai semua halaman
-- `js/auth.js` - koneksi Supabase + helper autentikasi, dimuat di semua halaman
+- **Jelajahi destinasi** — katalog wisata dengan foto, rating, dan harga, lengkap dengan pencarian dan tautan lokasi di Google Maps.
+- **Pemesanan tiket** — pilih tanggal kunjungan dan jumlah tiket, harga terhitung otomatis, langsung masuk ke keranjang.
+- **Akun pengguna** — registrasi dan login, profil yang bisa diisi dan tersimpan.
+- **Pembayaran & riwayat pesanan** — checkout dari keranjang dan lihat daftar tiket yang sudah dipesan.
+- **Dashboard admin** — tambah destinasi wisata baru yang langsung tampil di katalog untuk semua pengguna.
 
-## Menjalankan
+## Teknologi
 
-Buka `mainmenu.html` langsung di browser, atau lewat live server (mis. ekstensi Live Server di VS Code). Karena backend-nya online (Supabase), tidak perlu setup server/database lokal apapun.
+Frontend dibangun dengan HTML, CSS, dan JavaScript murni (tanpa framework), dengan backend dan database menggunakan [Supabase](https://supabase.com) — data pengguna, keranjang, dan destinasi tersimpan di database PostgreSQL online yang sama untuk semua pengguna.
 
-## Backend (Supabase)
+## Struktur Proyek
 
-Database & autentikasi berjalan di project Supabase online (region `ap-southeast-1`, free tier). Tabelnya:
+- `mainmenu.html` — halaman utama (landing + login/registrasi)
+- `gallery.html` — katalog destinasi wisata
+- `formtiket.html` — form pemesanan tiket
+- `registrasi.html` — konfirmasi pembayaran
+- `tiket.html` — riwayat pesanan
+- `profile.html` — profil pengguna
+- `developer.html` — dashboard admin
+- `css/theme.css` — design system bersama (warna, tipografi, komponen UI)
+- `js/auth.js` — koneksi Supabase dan autentikasi
 
-- `destinations` - data wisata (dibaca publik, ditambah/dihapus oleh user yang login lewat dashboard admin)
-- `profiles` - profil per user (satu baris per akun, dibuat otomatis lewat trigger saat registrasi)
-- `cart_items` - keranjang tiket per user
+## Menjalankan Secara Lokal
 
-Semua tabel pakai **Row Level Security (RLS)**: user cuma bisa lihat/ubah baris keranjang & profilnya sendiri; data destinasi bisa dibaca semua orang tapi cuma bisa ditambah/dihapus oleh pemiliknya.
-
-Login pakai username (bukan email) — di balik layar, `js/auth.js` mengubah username jadi email semu (`username@florism.local`) supaya cocok dengan sistem Supabase Auth yang berbasis email. Ada trigger database yang otomatis meng-konfirmasi akun baru (karena email semu itu tidak akan pernah benar-benar menerima email konfirmasi).
-
-## Deploy online
-
-1. **Frontend**: hosting statis apapun (GitHub Pages, Vercel, Netlify) — tinggal hubungkan ke repo ini, tidak perlu build step.
-2. **Backend**: sudah online di Supabase, tidak perlu dikerjakan ulang.
-
-## Keterbatasan
-
-- Perlindungan "leaked password" Supabase (cek password bocor lewat HaveIBeenPwned) belum diaktifkan — perlu diaktifkan manual lewat Supabase Dashboard kalau mau.
-- `login.html` tidak terhubung dari navigasi manapun (alur login yang dipakai adalah modal di `mainmenu.html`); dipertahankan dan tetap disambungkan ke Supabase untuk konsistensi kalau suatu saat mau dipakai.
-- Belum ada fitur lupa password / reset password.
+Buka `mainmenu.html` langsung di browser, atau lewat live server (misalnya ekstensi Live Server di VS Code). Tidak perlu setup database atau server tambahan — backend sudah online di Supabase.
