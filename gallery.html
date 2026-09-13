@@ -146,6 +146,7 @@
                 <a  href="#" onclick="lokasisp()">&#128962; Location</a><br>
             </div>
         </div>
+        <div id="row3" class="row2"></div>
         <div id="searchNotFound"></div>
     </div>
     <div id="masking" class="mask">
@@ -175,6 +176,53 @@
     
 </body>
 <script>
+       function tampilkanDestinasiTambahan() {
+        var row3 = document.getElementById('row3');
+        var data = JSON.parse(localStorage.getItem('florismDestinasiTambahan')) || [];
+
+        data.forEach(function (item) {
+            var listgal = document.createElement('div');
+            listgal.className = 'listgal';
+
+            var isi = document.createElement('div');
+            isi.className = 'isi';
+            isi.onclick = function () {
+                pesan(item.namaWisata, item.foto || 'css/Asset/kulon.jpg', item.harga);
+            };
+
+            var img = document.createElement('img');
+            img.src = item.foto || 'css/Asset/kulon.jpg';
+            isi.appendChild(img);
+
+            var h3 = document.createElement('h3');
+            h3.textContent = item.namaWisata;
+            isi.appendChild(h3);
+
+            var pRating = document.createElement('p');
+            pRating.innerHTML = '&#10026; ' + (item.rating || '-');
+            isi.appendChild(pRating);
+
+            var pHarga = document.createElement('p');
+            pHarga.textContent = 'Rp' + item.harga;
+            isi.appendChild(pHarga);
+
+            listgal.appendChild(isi);
+
+            if (item.lokasiLink) {
+                var a = document.createElement('a');
+                a.href = item.lokasiLink;
+                a.target = '_blank';
+                a.innerHTML = '&#128962; Location';
+                listgal.appendChild(a);
+                listgal.appendChild(document.createElement('br'));
+            }
+
+            row3.appendChild(listgal);
+        });
+    }
+
+    tampilkanDestinasiTambahan();
+
        function tampilkanDataKeranjang() {
         var tbody = document.getElementById("tbodykeranjang");
         var keranjang = JSON.parse(localStorage.getItem('keranjangTiket')) || [];
