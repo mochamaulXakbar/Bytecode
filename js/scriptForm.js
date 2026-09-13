@@ -1,12 +1,13 @@
-requireLogin();
+let currentUser = null;
 
-document.addEventListener("DOMContentLoaded", function () {
-    // This ensures that the DOM is fully loaded before executing the script
+document.addEventListener("DOMContentLoaded", async function () {
+    currentUser = await requireLogin();
+    if (!currentUser) return;
 
     const urlParams = new URLSearchParams(window.location.search);
     const isian = urlParams.get('isian');
-    const ayam = urlParams.get('ayam')
-    const harga = urlParams.get('harga')
+    const ayam = urlParams.get('ayam');
+    const harga = urlParams.get('harga');
 
     if (!isian || !ayam || !harga) {
         alert("Data wisata tidak ditemukan. Silakan pilih wisata dari gallery.");
@@ -18,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("fotobg").src = ayam;
     document.getElementById("harga").value = harga * 1;
 });
+
 function cekharga() {
     const urlParams = new URLSearchParams(window.location.search);
     const hargaSatuan = parseFloat(urlParams.get('harga'));
@@ -29,11 +31,4 @@ function cekharga() {
     }
 
     document.getElementById("harga").value = hargaSatuan * jumlah;
-}
-
-
-function submitForm() {
-    alert("Tiket sudah di pesan.");
-    // Arahkan pengguna kembali ke halaman utama
-    window.location.href = "gallery.html";
 }

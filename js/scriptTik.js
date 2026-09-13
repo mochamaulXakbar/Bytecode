@@ -1,5 +1,3 @@
-requireLogin();
-
 function kehome(){
     window.location.href = ("mainmenu.html")
 }
@@ -16,7 +14,7 @@ function ketiket(){
     window.location.href = ("tiket.html")
 }
 
-function kelogout(){
-    sessionStorage.removeItem('user');
+async function kelogout(){
+    await supabaseClient.auth.signOut();
     window.location.href = ("mainmenu.html")
 }

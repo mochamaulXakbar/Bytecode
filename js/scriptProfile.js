@@ -1,25 +1,41 @@
-requireLogin();
+let currentUser = null;
 
-document.addEventListener("DOMContentLoaded", function () {
-    const username = sessionStorage.getItem('user');
-    const profil = JSON.parse(localStorage.getItem('florismProfile_' + username)) || {};
+document.addEventListener("DOMContentLoaded", async function () {
+    currentUser = await requireLogin();
+    if (!currentUser) return;
 
-    document.getElementById("name").value = profil.name || "";
-    document.getElementById("email").value = profil.email || "";
-    document.getElementById("phone").value = profil.phone || "";
-    document.getElementById("gender").value = profil.gender || "";
+    const { data } = await supabaseClient
+        .from('profiles')
+        .select('*')
+        .eq('id', currentUser.id)
+        .maybeSingle();
+
+    if (data) {
+        document.getElementById("name").value = data.name || "";
+        document.getElementById("email").value = data.email || "";
+        document.getElementById("phone").value = data.phone || "";
+        document.getElementById("gender").value = data.gender || "";
+    }
 });
 
-function saveProfile() {
-    const username = sessionStorage.getItem('user');
+async function saveProfile() {
     const profil = {
+        id: currentUser.id,
+        username: currentUser.user_metadata.username || currentUser.email,
         name: document.getElementById("name").value,
         email: document.getElementById("email").value,
         phone: document.getElementById("phone").value,
-        gender: document.getElementById("gender").value
+        gender: document.getElementById("gender").value,
+        updated_at: new Date().toISOString()
     };
 
-    localStorage.setItem('florismProfile_' + username, JSON.stringify(profil));
+    const { error } = await supabaseClient.from('profiles').upsert(profil);
+
+    if (error) {
+        alert("Gagal menyimpan profil: " + error.message);
+        return;
+    }
+
     alert("Profil berhasil disimpan.");
 }
 
@@ -39,7 +55,7 @@ function ketiket(){
     window.location.href = ("tiket.html")
 }
 
-function kelogout(){
-    sessionStorage.removeItem('user');
+async function kelogout(){
+    await supabaseClient.auth.signOut();
     window.location.href = ("mainmenu.html")
 }

@@ -1,8 +1,9 @@
-document.addEventListener("DOMContentLoaded", function () {
-    if (isLoggedIn()) {
+document.addEventListener("DOMContentLoaded", async function () {
+    const user = await getCurrentUser();
+    if (user) {
         document.getElementById('navGuest').style.display = 'none';
         document.getElementById('navUser').style.display = 'flex';
-        document.getElementById('navUsername').textContent = sessionStorage.getItem('user');
+        document.getElementById('navUsername').textContent = user.user_metadata.username || user.email;
     }
 });
 
@@ -22,14 +23,14 @@ function keprofileNav(){
     window.location.href = ("profile.html")
 }
 
-function kelogoutNav(){
-    sessionStorage.removeItem('user');
+async function kelogoutNav(){
+    await supabaseClient.auth.signOut();
     window.location.href = ("mainmenu.html")
 }
 
 // Fungsi redirect
-function redirectToPageIfLoggedIn(destinationPage) {
-    if (isLoggedIn()) {
+async function redirectToPageIfLoggedIn(destinationPage) {
+    if (await isLoggedIn()) {
         window.location.href = destinationPage;
     } else {
         alert("Anda harus login atau registrasi terlebih dahulu.");
@@ -67,21 +68,29 @@ function registerhead(){
     document.getElementById('reg').classList.add('is-open')
 }
 
-function hasil(){
+async function hasil(){
     const username = document.getElementById('login-username').value.trim();
     const password = document.getElementById('login-password').value;
 
-    const user = getUsers().find(u => u.username === username && u.password === password);
-    if (!user) {
+    if (!username || !password) {
+        alert("Username dan password wajib diisi.");
+        return;
+    }
+
+    const { error } = await supabaseClient.auth.signInWithPassword({
+        email: usernameToEmail(username),
+        password: password
+    });
+
+    if (error) {
         alert("Username atau password salah.");
         return;
     }
 
-    sessionStorage.setItem('user', username);
     window.location.href = ("mainmenu.html")
 }
 
-function register(){
+async function register(){
     const username = document.getElementById('reg-username').value.trim();
     const password = document.getElementById('reg-password').value;
     const passwordConfirm = document.getElementById('reg-password-confirm').value;
@@ -95,14 +104,21 @@ function register(){
         return;
     }
 
-    const users = getUsers();
-    if (users.some(u => u.username === username)) {
-        alert("Username sudah terdaftar. Silakan login.");
+    const { error } = await supabaseClient.auth.signUp({
+        email: usernameToEmail(username),
+        password: password,
+        options: { data: { username: username } }
+    });
+
+    if (error) {
+        if (error.message.toLowerCase().includes('already registered')) {
+            alert("Username sudah terdaftar. Silakan login.");
+        } else {
+            alert("Registrasi gagal: " + error.message);
+        }
         return;
     }
 
-    users.push({ username, password });
-    saveUsers(users);
     alert("Registrasi berhasil. Silakan login.");
     klogin();
 }

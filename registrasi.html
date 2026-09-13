@@ -7,6 +7,7 @@
     <title>Florism/Registrasi</title>
     <link rel="stylesheet" type="text/css" href="css/theme.css">
     <link rel="stylesheet" type="text/css" href="css/regcss.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/auth.js"></script>
     <script src="js/scriptReg.js"></script>
 </head>
@@ -62,7 +63,7 @@
     </div>
 </body>
 <script>
-function pembayaran(){
+async function pembayaran(){
     const nama = document.getElementById('nama').value.trim();
     const email = document.getElementById('email').value.trim();
     const nohp = document.getElementById('nohp').value.trim();
@@ -80,7 +81,7 @@ function pembayaran(){
         return;
     }
 
-    localStorage.removeItem('keranjangTiket');
+    await supabaseClient.from('cart_items').delete().eq('user_id', currentUser.id);
 
     document.getElementById('masking').classList.add('is-open');
     document.getElementById('notifp').classList.add('is-open');

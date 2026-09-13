@@ -1,7 +1,8 @@
-requireLogin();
+let currentUser = null;
 
-document.addEventListener("DOMContentLoaded", function () {
-    // This ensures that the DOM is fully loaded before executing the script
+document.addEventListener("DOMContentLoaded", async function () {
+    currentUser = await requireLogin();
+    if (!currentUser) return;
 
     const urlParams = new URLSearchParams(window.location.search);
     const total = urlParams.get('harga');
@@ -17,17 +18,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function pesanan(){
     window.location.href = "gallery.html";
-}
-
-
-function login(){
-    window.location.href = ("login.html")
-}
-
-function menutama(){
-    window.location.href = ("mainmenu.html")
-}
-
-function mainmenu(){
-    window.location.href = ("mainmenu.html")
 }

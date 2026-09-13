@@ -1,23 +1,35 @@
-// Modul autentikasi sederhana berbasis localStorage/sessionStorage
-// dipakai bersama oleh semua halaman yang butuh status login.
+// Modul autentikasi & koneksi Supabase (database online sungguhan)
+// dipakai bersama oleh semua halaman.
 
-function getUsers() {
-    return JSON.parse(localStorage.getItem('florismUsers')) || [];
+const SUPABASE_URL = 'https://peohaavelmcumqwinqbm.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_Qeeki1MVEB_nO6jMVIDySg_PrPr2nZH';
+
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// Supabase Auth butuh format email. Supaya user cukup daftar pakai
+// username (seperti sebelumnya), kita ubah username jadi email semu
+// yang konsisten setiap kali (tidak pernah benar-benar dikirimi email).
+function usernameToEmail(username) {
+    const clean = username.trim().toLowerCase().replace(/[^a-z0-9_.-]/g, '');
+    return clean + '@florism.local';
 }
 
-function saveUsers(users) {
-    localStorage.setItem('florismUsers', JSON.stringify(users));
+async function getCurrentUser() {
+    const { data } = await supabaseClient.auth.getUser();
+    return data.user || null;
 }
 
-function isLoggedIn() {
-    return sessionStorage.getItem('user') !== null;
+async function isLoggedIn() {
+    return !!(await getCurrentUser());
 }
 
-function requireLogin() {
-    if (!isLoggedIn()) {
+async function requireLogin() {
+    const user = await getCurrentUser();
+    if (!user) {
         alert("Anda harus login terlebih dahulu.");
         window.location.href = "mainmenu.html";
     }
+    return user;
 }
 
 // Tutup modal/drawer/toast konfirmasi manapun yang sedang terbuka,

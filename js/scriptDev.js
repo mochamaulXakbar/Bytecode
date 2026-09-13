@@ -1,19 +1,18 @@
-requireLogin();
+let currentUser = null;
 
-function getDestinasiTambahan() {
-    return JSON.parse(localStorage.getItem('florismDestinasiTambahan')) || [];
-}
+document.addEventListener("DOMContentLoaded", async function () {
+    currentUser = await requireLogin();
+    if (!currentUser) return;
 
-function saveDestinasiTambahan(data) {
-    localStorage.setItem('florismDestinasiTambahan', JSON.stringify(data));
-}
+    await renderList();
+});
 
 function updatePreview() {
     const foto = document.getElementById('devFoto').value.trim();
     document.getElementById('devPreviewImg').src = foto || "css/Asset/kulon.jpg";
 }
 
-function tambahData() {
+async function tambahData() {
     const namaWisata = document.getElementById('devNama').value.trim();
     const foto = document.getElementById('devFoto').value.trim();
     const rating = document.getElementById('devRating').value.trim();
@@ -29,9 +28,19 @@ function tambahData() {
         return;
     }
 
-    const data = getDestinasiTambahan();
-    data.push({ namaWisata, foto, rating, harga, lokasiLink });
-    saveDestinasiTambahan(data);
+    const { error } = await supabaseClient.from('destinations').insert({
+        nama_wisata: namaWisata,
+        foto: foto,
+        rating: rating,
+        harga: parseFloat(harga),
+        lokasi_link: lokasiLink,
+        created_by: currentUser.id
+    });
+
+    if (error) {
+        alert("Gagal menambahkan data: " + error.message);
+        return;
+    }
 
     document.getElementById('devNama').value = "";
     document.getElementById('devFoto').value = "";
@@ -41,38 +50,38 @@ function tambahData() {
     updatePreview();
 
     alert("Data wisata berhasil ditambahkan. Cek halaman Gallery.");
-    renderList();
+    await renderList();
 }
 
-function hapusData(index) {
-    const data = getDestinasiTambahan();
-    data.splice(index, 1);
-    saveDestinasiTambahan(data);
-    renderList();
+async function hapusData(id) {
+    await supabaseClient.from('destinations').delete().eq('id', id);
+    await renderList();
 }
 
-function renderList() {
-    const data = getDestinasiTambahan();
+async function renderList() {
     const wrapper = document.getElementById('daftarData');
     const list = document.getElementById('listData');
     list.innerHTML = "";
 
-    if (data.length === 0) {
+    const { data, error } = await supabaseClient
+        .from('destinations')
+        .select('*')
+        .eq('created_by', currentUser.id)
+        .order('created_at', { ascending: true });
+
+    if (error || !data || data.length === 0) {
         wrapper.style.display = "none";
         return;
     }
 
     wrapper.style.display = "block";
-    data.forEach(function (item, index) {
+    data.forEach(function (item) {
         const row = document.createElement('div');
-        row.style.marginBottom = "8px";
-        row.innerHTML = "<strong>" + item.namaWisata + "</strong> - Rp" + item.harga + " ";
+        row.innerHTML = "<strong>" + item.nama_wisata + "</strong> - Rp" + item.harga + " ";
         const hapusBtn = document.createElement('button');
         hapusBtn.textContent = "Hapus";
-        hapusBtn.onclick = function () { hapusData(index); };
+        hapusBtn.onclick = function () { hapusData(item.id); };
         row.appendChild(hapusBtn);
         list.appendChild(row);
     });
 }
-
-document.addEventListener("DOMContentLoaded", renderList);
